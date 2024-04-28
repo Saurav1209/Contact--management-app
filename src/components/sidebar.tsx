@@ -15,7 +15,7 @@ const Sidebar = () => {
               <Link to="/" className="block py-2">Home</Link>
             </li>
             <li>
-              <Link to="/contacts" className="block py-2">Contacts</Link>
+              <Link to="/dashboard" className="block py-2">Chart and Graphs</Link>
             </li>
           </ul>
         </nav>

@@ -7,7 +7,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className='px-2'>
-      <h1 className="text-2xl font-bold mb-4 text-center">COVID-19 Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center my-3">COVID-19 Dashboard</h1>
       <div className="flex justify-start mb-4">
         <button
           className="mr-2 px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50"

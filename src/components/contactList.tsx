@@ -5,7 +5,7 @@ import { RootState } from '../store/store';
 import { Contact } from '../types';
 import Modal from './modal';
 import { deleteContact } from '../store/contactSlice';
-import ContactForm from'./contactForm'
+import ContactForm from './contactForm'
 
 const ContactList: React.FC = () => {
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
@@ -33,24 +33,26 @@ const ContactList: React.FC = () => {
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Contacts</h1>
       {contacts.length === 0 && (
-  <p className="text-center text-red-500 font-semibold text-lg mt-8">No contacts found<br/>Please add contact from add contact button.</p>
-)}
+        <p className="text-center text-red-500 font-semibold text-lg mt-8">No contacts found<br />Please add contact from add contact button.</p>
+      )}
 
       <ul className="grid grid-cols-1 gap-4">
         {contacts.map((contact: Contact) => (
-          <li key={contact.id} className={`bg-white shadow-md rounded-lg p-4 flex items-center justify-between ${contact.status === 'active' ? 'bg-green-100' : 'bg-red-100'}`}>
-            <div>
-              <p><b>{contact.contactNumber}</b></p>
-            </div>
-            <div>
-              <button
-                onClick={() => handleViewContact(contact)}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg mr-2"
-              >
-                View
-              </button>
-              <button onClick={() => handleEditContact(contact)} className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg mr-2">Edit</button>
-              <button onClick={() => handleDeleteContact(contact.id)} className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg">Delete</button>
+          <li key={contact.id} className='bg-white rounded-lg shadow-md p-4 mb-4'>
+            <div className="  sm:flex sm:flex-row sm:items-center sm:justify-between flex flex-col">
+              <div className='mb-1 sm:mb-5'>
+                <p><b>{contact.contactNumber}</b></p>
+              </div>
+              <div className='mt-0  justify-end sm:mt-5'>
+                <button
+                  onClick={() => handleViewContact(contact)}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg mr-2 sm:py-1 sm:px-1 sm:text-sm sm:rounded-md "
+                >
+                  View
+                </button>
+                <button onClick={() => handleEditContact(contact)} className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg mr-2 sm:py-1 sm:px-1 sm:text-sm sm:rounded-md">Edit</button>
+                <button onClick={() => handleDeleteContact(contact.id)} className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg sm:py-1 sm:px-1 sm:text-sm sm:rounded-md">Delete</button>
+              </div>
             </div>
           </li>
         ))}

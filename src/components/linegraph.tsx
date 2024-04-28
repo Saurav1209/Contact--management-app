@@ -13,7 +13,7 @@ const LineGraph: React.FC = () => {
   
     
     if (data && data.cases) {
-      console.log('case',data);
+      // console.log('case',data);
       renderChart(data.cases, data.deaths, data.recovered);
     }
   }, [data]);

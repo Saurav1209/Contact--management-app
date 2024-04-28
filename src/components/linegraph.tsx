@@ -10,35 +10,63 @@ const LineGraph: React.FC = () => {
   });
 
   useEffect(() => {
-    console.log('case',data.cases);
+  
     
     if (data && data.cases) {
-      renderChart(data.cases);
+      console.log('case',data);
+      renderChart(data.cases, data.deaths, data.recovered);
     }
   }, [data]);
 
-  const renderChart = (cases: { [key: string]: number }) => {
+  const renderChart = (cases: { [key: string]: number }, deaths: { [key: string]: number }, recovered: { [key: string]: number }) => {
     const canvas = document.getElementById('line-chart') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
-    if (ctx) {
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: Object.keys(cases),
-          datasets: [
-            {
-              label: 'Cases',
-              data: Object.values(cases),
-              fill: false,
-              borderColor: 'rgb(75, 192, 192)',
-              tension: 0.1,
-            },
-          ],
-        },
-      });
+  
+    let chartInstance: Chart | undefined;
+  
+    if (canvas) {
+      chartInstance = Chart.getChart(canvas);
+    }
+  
+    if (chartInstance) {
+      chartInstance.data.labels = Object.keys(cases);
+      chartInstance.data.datasets[0].data = Object.values(cases);
+      chartInstance.update();
+    } else {
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: Object.keys(cases),
+            datasets: [
+              {
+                label: 'Cases',
+                data: Object.values(cases),
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
+              },
+              {
+                label: 'Deaths',
+                data: Object.values(deaths),
+                fill: false,
+                borderColor: 'rgb(255, 99, 132)',
+                tension: 0.1,
+              },
+              {
+                label: 'Recovered',
+                data: Object.values(recovered),
+                fill: false,
+                borderColor: 'rgb(54, 162, 235)',
+                tension: 0.1,
+              },
+            ],
+          },
+        });
+      }
     }
   };
-
+  
   return <canvas id="line-chart" width="400" height="200"></canvas>;
 };
 

@@ -14,6 +14,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+### `Data that is used in chart and map are from below respective urls`
+https://disease.sh/v3/covid-19/historical/all?lastdays=all
+data used from this url is cases, deaths, recovered.
+https://disease.sh/v3/covid-19/countries
+Data used from this url is   country,  active,  recovered,  deaths,  countryInfo: {lat,long,flag,_id  };
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

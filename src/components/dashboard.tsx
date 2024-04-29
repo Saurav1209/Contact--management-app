@@ -4,7 +4,7 @@ import Map from './map';
 
 const Dashboard: React.FC = () => {
   const [showLineGraph, setShowLineGraph] = useState(true);
-
+//integrated line graph and map in dashboard with buttons.
   return (
     <div className='px-2'>
       <h1 className="text-2xl font-bold mb-4 text-center my-3">COVID-19 Dashboard</h1>

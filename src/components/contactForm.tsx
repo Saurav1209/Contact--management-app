@@ -1,4 +1,3 @@
-// ContactForm.tsx
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addContact, editContact } from '../store/contactSlice';
@@ -12,6 +11,7 @@ interface ContactFormProps {
 
 const ContactForm: React.FC<ContactFormProps> = ({ initialContact, onClose }) => {
   const dispatch = useDispatch();
+  //used useState hooks for state management
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
@@ -19,6 +19,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialContact, onClose }) =>
   const [isEditMode, setIsEditMode] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  //Uses the useEffect hook to set form field values when initialContact prop changes, indicating that the form is in edit mode.
   useEffect(() => {
     if (initialContact) {
       setFirstName(initialContact.firstName);
@@ -34,6 +35,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialContact, onClose }) =>
   };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    //creating contact obj array to save
     const newContact: Contact = {
       id: isEditMode ? initialContact!.id : Date.now().toString(),
       firstName,
@@ -42,10 +44,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialContact, onClose }) =>
       status,
     };
     if (isEditMode) {
+      //if its edit mode dispatch to edit contact is used.
       dispatch(editContact({ id: initialContact!.id, contact: newContact }));
     } else {
+       //if its add mode dispatch to add contact is used.
       dispatch(addContact(newContact));
     }
+    //reseting form input values
     setFirstName('');
     setLastName('');
     setContactNumber('');
@@ -57,14 +62,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialContact, onClose }) =>
   return (
     <div>
        <h1 className="text-2xl text-center font-bold mt-3 ms-3">Contact Management App</h1>
-      
+       {/* add contact button */}
         <button
           onClick={() => setIsOpen(true)}
           className="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none mt-3 ms-3"
         >
           Add Contact
         </button>
-     
+     {/* Modal opens after clicking on add contact button or edit button from each lists. */}
       <Modal   isOpen={isOpen || isEditMode}  onClose={handleCancel} >
         <form onSubmit={handleSubmit} className="p-4">
           <h2 className="text-lg font-semibold mb-4">{isEditMode ? 'Edit' : 'Add'} Contact</h2>

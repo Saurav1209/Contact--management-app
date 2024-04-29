@@ -8,12 +8,14 @@ import { deleteContact } from '../store/contactSlice';
 import ContactForm from './contactForm'
 
 const ContactList: React.FC = () => {
+  //Used the useSelector hook to select the contacts array from the Redux store's state.
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
-  const [isOpenView, setIsOpenView] = useState(false);
-  const [isOpenEdit, setIsOpenEdit] = useState(false);
-  const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
+  const [isOpenView, setIsOpenView] = useState(false);  //used to open a modal to display the contact information
+  const [isOpenEdit, setIsOpenEdit] = useState(false);   
+  const [selectedContact, setSelectedContact] = useState<Contact | null>(null);//select particular contact to perform operations.
   const dispatch = useDispatch();
 
+  //Event handler fns.
   const handleViewContact = (contact: Contact) => {
     setSelectedContact(contact);
     setIsOpenView(true);
@@ -32,10 +34,11 @@ const ContactList: React.FC = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Contacts</h1>
+      {/* if conatcts array is empy it will display the message */}
       {contacts.length === 0 && (
         <p className="text-center text-red-500 font-semibold text-lg mt-8">No contacts found<br />Please add contact from add contact button.</p>
       )}
-
+  {/* used map to display all the contacts present in array */}
       <ul className="grid grid-cols-1 gap-4">
         {contacts.map((contact: Contact) => (
           <li key={contact.id} className='bg-white rounded-lg shadow-md p-4 mb-4'>
@@ -57,6 +60,7 @@ const ContactList: React.FC = () => {
           </li>
         ))}
       </ul>
+      {/* modal will open when we click on view button and selected item will be displayed. */}
       <Modal isOpen={isOpenView} onClose={() => setIsOpenView(false)}>
         {selectedContact && (
           <div className="p-4">

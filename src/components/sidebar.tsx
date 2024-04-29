@@ -11,20 +11,22 @@ const Sidebar = () => {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
+      {/* On big scrrens above md the sidebar will be opened and below of it will beclodes and will have button for toggling it. */}
       <div className={`bg-gray-800 text-white w-64 ${isOpen ? 'block' : 'hidden'} md:block`}>
         <div className="p-4">
           {/* <h1 className="text-2xl font-bold ml-1 sm:ml-5">Sidebar</h1> */}
         </div>
-        <nav className="p-4">
+        <nav className="p-2">
           <ul>
-            <li>
-              <Link to="/" className="block py-2">Contacts</Link>
+            <li className="mb-3">
+              <Link to="/" className="block py-2 px-4 bg-gray-900 text-white text-lg rounded-md hover:bg-gray-700" style={{ fontFamily: 'Roboto, sans-serif' }}>Contacts</Link>
             </li>
-            <li>
-              <Link to="/dashboard" className="block py-2">Chart and Graphs</Link>
+            <li className="mb-2">
+              <Link to="/dashboard" className="block py-2 px-4 bg-gray-900 text-white text-lg rounded-md hover:bg-gray-700"style={{ fontFamily: 'Roboto, sans-serif' }}>Chart and Graphs</Link>
             </li>
           </ul>
         </nav>
+
       </div>
 
       {/* Sidebar Toggle Button */}

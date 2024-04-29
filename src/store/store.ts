@@ -1,4 +1,3 @@
-// store/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import contactReducer from './contactSlice';
 
